@@ -1,0 +1,136 @@
+---
+title: "DA401Anaysis"
+output: html_document
+---
+
+
+```{r}
+library(readr)
+library(dplyr)
+library(ggplot2)
+library(stats)
+library(MASS)
+library(caret)
+```
+
+```{r, echo = FALSE}
+
+keyword_data <- read.csv("keyword_data.csv")
+keyword_data <-keyword_data[2:25]
+keyword_data<-keyword_data[-2]
+na.omit(keyword_data)
+str(keyword_data)
+```
+
+
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r}
+lm_mod <- lm(listing_price ~ keyword_shoes, data=keyword_data)
+AIC
+```
+
+```{r}
+model1 <- lm(listing_price ~ listing_brand + listing_color + listing_shipping_price + keyword_deadstock + keyword_deadstock + keyword_limEdit + keyword_in_box + keyword_rare + keyword_brand_new + keyword_classic + keyword_authentic + keyword_retro + keyword_vintage + keyword_OG + keyword_lifestyle + keyword_casual + keyword_running + keyword_basketball + keyword_athletic + keyword_low + keyword_mid + keyword_high + keyword_sneakers + keyword_shoes, data = keyword_data)
+
+model2 <- lm(listing_price ~ listing_brand + listing_color + listing_shipping_price + keyword_deadstock + keyword_deadstock + keyword_limEdit + keyword_in_box + keyword_rare + keyword_brand_new + keyword_classic + keyword_authentic + keyword_retro + keyword_vintage + keyword_OG + keyword_lifestyle + keyword_casual + keyword_running + keyword_basketball + keyword_athletic + keyword_low + keyword_mid + keyword_high + keyword_sneakers, data = keyword_data)
+
+model3 <- lm(listing_price ~ listing_brand + listing_color + listing_shipping_price + keyword_deadstock + keyword_deadstock + keyword_limEdit + keyword_in_box + keyword_rare + keyword_brand_new + keyword_classic + keyword_authentic + keyword_retro + keyword_vintage + keyword_OG + keyword_lifestyle + keyword_casual + keyword_running + keyword_basketball + keyword_athletic + keyword_low + keyword_mid + keyword_high , data = keyword_data)
+
+model4 <- lm(listing_price ~ listing_brand + listing_color + listing_shipping_price + keyword_deadstock + keyword_deadstock + keyword_limEdit + keyword_in_box + keyword_rare + keyword_brand_new + keyword_classic + keyword_authentic + keyword_retro + keyword_vintage + keyword_OG + keyword_lifestyle + keyword_casual + keyword_running + keyword_basketball + keyword_athletic + keyword_low + keyword_mid, data = keyword_data)
+
+model5 <- lm(listing_price ~ listing_brand + listing_color + listing_shipping_price + keyword_deadstock + keyword_deadstock + keyword_limEdit + keyword_in_box + keyword_rare + keyword_brand_new + keyword_classic + keyword_authentic + keyword_retro + keyword_vintage + keyword_OG + keyword_lifestyle + keyword_casual + keyword_running + keyword_basketball + keyword_athletic + keyword_low, data = keyword_data)
+
+model6 <- lm(listing_price ~ listing_brand + listing_color + listing_shipping_price + keyword_deadstock + keyword_deadstock + keyword_limEdit + keyword_in_box + keyword_rare + keyword_brand_new + keyword_classic + keyword_authentic + keyword_retro + keyword_vintage + keyword_OG + keyword_lifestyle + keyword_casual + keyword_running + keyword_basketball + keyword_athletic, data = keyword_data)
+```
+
+```{r}
+model7 <- lm(listing_price ~ listing_brand + listing_color + listing_shipping_price + keyword_deadstock + keyword_deadstock + keyword_limEdit + keyword_in_box + keyword_rare + keyword_brand_new + keyword_classic + keyword_authentic + keyword_retro + keyword_vintage + keyword_OG + keyword_lifestyle + keyword_casual + keyword_running + keyword_basketball, data = keyword_data)
+
+model8 <- lm(listing_price ~ listing_brand + listing_color + listing_shipping_price + keyword_deadstock + keyword_deadstock + keyword_limEdit + keyword_in_box + keyword_rare + keyword_brand_new + keyword_classic + keyword_authentic + keyword_retro + keyword_vintage + keyword_OG + keyword_lifestyle + keyword_casual + keyword_running, data = keyword_data)
+
+model9 <- lm(listing_price ~ listing_brand + listing_color + listing_shipping_price + keyword_deadstock + keyword_deadstock + keyword_limEdit + keyword_in_box + keyword_rare + keyword_brand_new + keyword_classic + keyword_authentic + keyword_retro + keyword_vintage + keyword_OG + keyword_lifestyle + keyword_casual, data = keyword_data)
+
+model10 <- lm(listing_price ~ listing_brand + listing_color + listing_shipping_price + keyword_deadstock + keyword_deadstock + keyword_limEdit + keyword_in_box + keyword_rare + keyword_brand_new + keyword_classic + keyword_authentic + keyword_retro + keyword_vintage + keyword_OG + keyword_lifestyle, data = keyword_data)
+
+model11 <- lm(listing_price ~ listing_brand + listing_color + listing_shipping_price + keyword_deadstock + keyword_deadstock + keyword_limEdit + keyword_in_box + keyword_rare + keyword_brand_new + keyword_classic + keyword_authentic + keyword_retro + keyword_vintage + keyword_OG, data = keyword_data)
+
+```
+
+```{r}
+model12 <- lm(listing_price ~ listing_brand + listing_color + listing_shipping_price + keyword_deadstock + keyword_deadstock + keyword_limEdit + keyword_in_box + keyword_rare + keyword_brand_new + keyword_classic + keyword_authentic + keyword_retro + keyword_vintage, data = keyword_data)
+
+model13 <- lm(listing_price ~ listing_brand + listing_color + listing_shipping_price + keyword_deadstock + keyword_deadstock + keyword_limEdit + keyword_in_box + keyword_rare + keyword_brand_new + keyword_classic + keyword_authentic + keyword_retro, data = keyword_data)
+
+model14 <- lm(listing_price ~ listing_brand + listing_color + listing_shipping_price + keyword_deadstock + keyword_deadstock + keyword_limEdit + keyword_in_box + keyword_rare + keyword_brand_new + keyword_classic + keyword_authentic, data = keyword_data)
+
+model15 <- lm(listing_price ~ listing_brand + listing_color + listing_shipping_price + keyword_deadstock + keyword_deadstock + keyword_limEdit + keyword_in_box + keyword_rare + keyword_brand_new + keyword_classic, data = keyword_data)
+
+model16 <- lm(listing_price ~ listing_brand + listing_color + listing_shipping_price + keyword_deadstock + keyword_deadstock + keyword_limEdit + keyword_in_box + keyword_rare + keyword_brand_new, data = keyword_data)
+
+model17 <- lm(listing_price ~ listing_brand + listing_color + listing_shipping_price + keyword_deadstock + keyword_deadstock + keyword_limEdit + keyword_in_box + keyword_rare, data = keyword_data)
+
+model18 <- lm(listing_price ~ listing_brand + listing_color + listing_shipping_price + keyword_deadstock + keyword_deadstock + keyword_limEdit + keyword_in_box, data = keyword_data)
+
+model19 <- lm(listing_price ~ listing_brand + listing_color + listing_shipping_price + keyword_deadstock + keyword_deadstock + keyword_limEdit, data = keyword_data)
+```
+
+```{r}
+#calculate AIC of each model
+AIC(model1,model2,model3,model4,model5,model6,model7,model8,model9,model10,model11,model12,model13,model14,model15,model16,model17,model18,model19)
+
+
+#columns retro + shoes + sneakers
+```
+
+
+```{r}
+keyword_data$keyword_shoes <- as.factor(keyword_data$keyword_shoes)
+keyword_data$keyword_sneakers <- as.factor(keyword_data$keyword_sneakers)
+keyword_data$keyword_high <- as.factor(keyword_data$keyword_high)
+keyword_data$keyword_mid <- as.factor(keyword_data$keyword_mid)
+keyword_data$keyword_low <- as.factor(keyword_data$keyword_low)
+keyword_data$keyword_basketball <- as.factor(keyword_data$keyword_basketball)
+keyword_data$keyword_keyword_running <- as.factor(keyword_data$keyword_running)
+keyword_data$keyword_keyword_athletic <- as.factor(keyword_data$keyword_athletic)
+keyword_data$keyword_casual <- as.factor(keyword_data$keyword_casual)
+keyword_data$keyword_lifestyle <- as.factor(keyword_data$keyword_lifestyle)
+keyword_data$keyword_OG <- as.factor(keyword_data$keyword_OG)
+keyword_data$keyword_vintage <- as.factor(keyword_data$keyword_vintage)
+keyword_data$keyword_retro <- as.factor(keyword_data$keyword_retro)
+keyword_data$keyword_classic <- as.factor(keyword_data$keyword_classic)
+keyword_data$keyword_deadstock <- as.factor(keyword_data$keyword_deadstock)
+keyword_data$keyword_limEdit <- as.factor(keyword_data$keyword_limEdit)
+keyword_data$keyword_rare <- as.factor(keyword_data$keyword_rare)
+keyword_data$keyword_authentic <- as.factor(keyword_data$keyword_authentic)
+keyword_data$keyword_in_box <- as.factor(keyword_data$keyword_in_box)
+keyword_data$keyword_brand_new <- as.factor(keyword_data$keyword_brand_new)
+keyword_data$keyword_athletic <- as.factor(keyword_data$keyword_athletic)
+keyword_data$keyword_running <- as.factor(keyword_data$keyword_running)
+```
+
+
+```{r}
+set.seed(100)
+train <- createDataPartition(keyword_data[,"listing_price"],p=0.7, list = FALSE) 
+TrainSet <- keyword_data[train,]
+ValidSet <- keyword_data[-train,]
+
+ 
+ctrl <- trainControl(method = "cv", number = 26)
+fit.cv <- train(listing_price ~., data = TrainSet, method = "rf",
+                trControl = ctrl,
+                tunelength = 26)
+fit.cv
+```
+```{r}
+me
+```
+
+```{r}
+sapply(lapply(keyword_data, unique),length)
+write.csv(keyword_data,'keyword_data2.csv'
+```
